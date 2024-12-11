@@ -273,7 +273,7 @@ const WeekView = () => {
 };
 
 const Calendar = () => {
-    const { currentView, setCurrentView } = useCalendarContext();
+    const { currentView } = useCalendarContext();
 
     return (
         <motion.div

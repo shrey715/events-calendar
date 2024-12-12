@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import UpdateModal from '@/components/ui/updateModal';
 import AddModal from '@/components/ui/addModal';
 
+// this view is essentially the same as day view, just 7 day views stuck together.
+
 const colorMap = {
     blue: 'bg-blue-500',
     green: 'bg-green-500',
@@ -27,13 +29,13 @@ const WeekView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSe
             const events = getAllEvents();
             const sortedEvents = sortEvents(events);
             const startOfWeek = new Date(selectedDate);
-            startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
+            startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay()); // get the first day of the week
             const endOfWeek = new Date(startOfWeek);
-            endOfWeek.setDate(startOfWeek.getDate() + 6);
+            endOfWeek.setDate(startOfWeek.getDate() + 6); // get the last day of the week
 
             const eventsForSelectedWeek = sortedEvents.reduce((acc, event) => {
                 const eventDate = new Date(event.date);
-                if (eventDate >= startOfWeek && eventDate <= endOfWeek) {
+                if (eventDate >= startOfWeek && eventDate <= endOfWeek) { // if the event is in the selected week
                     const dateString = eventDate.toDateString();
                     if (!acc[dateString]) {
                         acc[dateString] = [];

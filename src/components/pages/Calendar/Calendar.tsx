@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const Calendar = () => {
     const { currentView, setCurrentView } = useCalendarContext();
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date()); //to keep track of the selected date and maintain it across views
 
     const handleDayClick = (date: Date) => {
         setSelectedDate(date);

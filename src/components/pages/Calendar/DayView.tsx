@@ -43,7 +43,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
 
     useEffect(() => {
         fetchEvents();
-    }, [selectedDate, refetch]);
+    }, [selectedDate, refetch]); /* this is to fetch the events for the selected day, everytime either day changes or some updation is made */
 
     const handleNextDay = () => {
         setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() + 1)));
@@ -114,7 +114,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
                             key={i}
                             className="h-16 border-b text-sm text-gray-500 flex items-start justify-end pr-3 pt-1"
                         >
-                            {i === 0 ? '12 AM' : i < 12 ? `${i} AM` : i === 12 ? '12 PM' : `${i - 12} PM`}
+                            {i === 0 ? '12 AM' : i < 12 ? `${i} AM` : i === 12 ? '12 PM' : `${i - 12} PM`} {/* this is to display the time on the left side */}
                         </div>
                     ))}
                 </div>
@@ -125,8 +125,8 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
                             key={i}
                             className="h-16 border-b border-gray-200 relative cursor-pointer"
                             onClick={() => setIsAddModalOpen(true)}
-                        />
-                    ))}
+                        /> 
+                    ))}     {/* this is to display the white space on the right side of the time */}
 
                     {selectedDate.toDateString() === today.toDateString() && (
                         <div
@@ -161,7 +161,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
                             >
                                 <h3 className="font-semibold text-sm text-white">{event.name}</h3>
                                 <p className="text-xs text-white/80">{event.description}</p>
-                                <span className="text-xs text-white/60">{`${event.startTime} - ${event.endTime}`}</span>
+                                <span className="text-xs text-white/60">{`${event.startTime} - ${event.endTime}`}</span> {/* this is to display the event name, description and time inside the white space when an event exists */}
                             </motion.div>
                         );
                     })}

@@ -14,7 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calendar" element={
-            <CalendarProvider>
+            <CalendarProvider> {/* Wrap the Calendar component with the CalendarProvider for context of view */}
               <Calendar />
             </CalendarProvider>
           } />

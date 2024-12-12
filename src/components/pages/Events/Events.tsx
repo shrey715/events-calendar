@@ -39,18 +39,18 @@ const SearchEvents = () => {
         const filterEvents = () => {
             let filtered = events;
 
-            if (searchTerm) {
+            if (searchTerm) { // if search term is present then filter the events based on the search term
                 filtered = filtered.filter(event =>
                     event.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     event.description.toLowerCase().includes(searchTerm.toLowerCase())
                 );
             }
 
-            if (searchType) {
+            if (searchType) { // if search type is present then filter the events based on the search type
                 filtered = filtered.filter(event => event.type.toLowerCase().includes(searchType.toLowerCase()));
             }
 
-            if (searchDate) {
+            if (searchDate) { // if search date is present then filter the events based on the search date  
                 filtered = filtered.filter(event => new Date(event.date).toDateString() === new Date(searchDate).toDateString());
             }
 

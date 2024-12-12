@@ -35,6 +35,8 @@ const MonthView = ({ selectedDate, onDayClick, setSelectedDate }: { selectedDate
             const startOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
             const endOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
 
+            /* this is to filter the events for the selected month */
+
             const eventsForSelectedMonth = sortedEvents.reduce((acc, event) => {
                 const eventDate = new Date(event.date);
                 if (eventDate >= startOfMonth && eventDate <= endOfMonth) {
@@ -137,8 +139,8 @@ const MonthView = ({ selectedDate, onDayClick, setSelectedDate }: { selectedDate
             </motion.div>
 
             {selectedEvent && (
-                <UpdateModal isOpen={!!selectedEvent} onClose={handleCloseModal} event={selectedEvent} />
-            )}
+                <UpdateModal isOpen={!!selectedEvent} onClose={handleCloseModal} event={selectedEvent} /> 
+            )} {/* UpdateModal is a component that allows the user to update an event. Redundant code because its an undecided functionality, but might add later.  */}
 
             {isAddModalOpen && (
                 <AddModal isOpen={isAddModalOpen} onClose={handleCloseAddModal} />

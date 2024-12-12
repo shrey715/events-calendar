@@ -27,7 +27,7 @@ interface Event {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // used in the front-end
-const sortEvents = (events: Event[]): Event[] => {
+const sortEvents = (events: Event[]): Event[] => { //function to sort events by date and time, required when displaying events to the user
     return events.sort((a, b) => {
         const dateCompare = new Date(a.date).getTime() - new Date(b.date).getTime();
         if (dateCompare !== 0) return dateCompare;
@@ -44,7 +44,7 @@ const getAllEvents = (): Event[] => {
 const addNewEvent = (event: Event): void => {
     const events = getAllEvents();
 
-    const hasConflict = events.some(existingEvent => 
+    const hasConflict = events.some(existingEvent => // check for conflicts with existing events, such as overlapping times (complete and partial both)
         existingEvent.date === event.date &&
         ((event.startTime >= existingEvent.startTime && event.startTime < existingEvent.endTime) ||
         (event.endTime > existingEvent.startTime && event.endTime <= existingEvent.endTime) ||
@@ -59,13 +59,13 @@ const addNewEvent = (event: Event): void => {
     localStorage.setItem('events', JSON.stringify(events));
 }
 
-const deleteEvent = (id: number): void => {
+const deleteEvent = (id: number): void => { //function to delete an event from the local storage
     const events = getAllEvents();
     const newEvents = events.filter((event: Event) => event.id !== id);
     localStorage.setItem('events', JSON.stringify(newEvents));
 }
 
-const updateEvent = (id: number, updatedEvent: Event): void => {
+const updateEvent = (id: number, updatedEvent: Event): void => { //updates events when the user clicks on the update button for an event, sends the id in the backend and changes accordingly
     const events = getAllEvents();
 
     const hasConflict = events.some(existingEvent => 

@@ -51,7 +51,7 @@ const Header = () => {
                 <Button>
                     <Link to='/events'>Go to Events</Link>
                 </Button>
-                <DropdownMenu>
+                <DropdownMenu> {/* Dropdown menu for changing the view, using shadcn's dropdown menu */}
                     <DropdownMenuTrigger>
                         <Button>
                             <span className='mr-2'>View: </span>
@@ -72,7 +72,7 @@ const Header = () => {
                     onClick={onDownloadClick}
                 >
                     <DownloadIcon />
-                    <span className='ml-2'>Download Events</span>
+                    <span className='ml-2'>Download Events</span> {/* Button to download events, using the sortEvents and getAllEvents in the events.ts */}
                 </Button>
             </div>
         </motion.header>

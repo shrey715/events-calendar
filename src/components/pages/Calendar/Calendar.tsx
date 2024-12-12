@@ -30,7 +30,7 @@ const Calendar = () => {
             className="bg-transparent p-5"
         >
             <Header />
-            {currentView === 'year' && <YearView onMonthClick={handleMonthClick} />}
+            {currentView === 'year' && <YearView onMonthClick={handleMonthClick} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
             {currentView === 'month' && <MonthView selectedDate={selectedDate} onDayClick={handleDayClick} setSelectedDate={setSelectedDate} />}
             {currentView === 'week' && <WeekView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
             {currentView === 'day' && <DayView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}            

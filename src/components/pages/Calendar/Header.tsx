@@ -16,6 +16,7 @@ import {
     getAllEvents,
     sortEvents
 } from '@/api/event';
+import { Link } from 'react-router';
 
 const Header = () => {
     const { currentView, setCurrentView } = useCalendarContext();
@@ -41,10 +42,15 @@ const Header = () => {
             className='flex flex-row justify-between items-center bg-transparent p-2 w-full h-fit'
         >
             <div className='flex flex-row justify-center items-center text-pink-500'>
-                <CalendarDaysIcon className='mr-2' />
-                <h1 className='text-2xl font-bold'>Calendrify</h1>
+                <Link to='/' className='flex flex-row justify-around items-center'>
+                    <CalendarDaysIcon className='mr-2' />
+                    <h1 className='text-2xl font-bold'>Calendrify</h1>
+                </Link>
             </div>
             <div className='flex flex-row justify-center items-center gap-5'>
+                <Button>
+                    <Link to='/events'>Go to Events</Link>
+                </Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Button>

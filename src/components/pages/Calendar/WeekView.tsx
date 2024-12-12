@@ -85,7 +85,7 @@ const WeekView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSe
                     <ChevronLeft size={20} />
                 </Button>
                 <h2 className="text-lg font-semibold text-gray-800">
-                    {`${daysOfWeek[0].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${daysOfWeek[6].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`}
+                    {`${daysOfWeek[0].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${daysOfWeek[6].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`} of {selectedDate.getFullYear()}
                 </h2>
                 <Button variant="ghost" onClick={handleNextWeek} className="rounded-full p-2 hover:bg-gray-100">
                     <ChevronRight size={20} />
@@ -95,7 +95,13 @@ const WeekView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSe
             <motion.div className="flex flex-1 flex-col rounded-lg bg-gray-50 shadow-inner" initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }}>
                 <div className="grid grid-cols-7 border-b bg-gray-100 rounded-t-lg">
                     {daysOfWeek.map((date, index) => (
-                        <div key={index} className="text-center font-semibold text-gray-800 py-2">
+                        <div
+                            key={index}
+                            className={cn("text-center font-semibold py-2", {
+                                "text-red-500": date.getDay() === 0 || date.getDay() === 6, 
+                                "text-gray-800": date.getDay() !== 0 && date.getDay() !== 6,
+                            })}
+                        >
                             {date.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric' })}
                         </div>
                     ))}

@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 import UpdateModal from '@/components/ui/updateModal';
 import AddModal from '@/components/ui/addModal';
 
-const colorMap = {
+const colorMap = { 
     blue: 'bg-blue-500',
     green: 'bg-green-500',
     red: 'bg-red-500',
@@ -54,7 +54,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
     };
 
     const handleEventClick = (event: Event) => {
-        setSelectedEvent(event);
+        setSelectedEvent(event); // when u click on an event it will open the update modal
     };
 
     const handleCloseModal = () => {
@@ -63,7 +63,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
     };
 
     const handleOpenAddModal = () => {
-        setIsAddModalOpen(true);
+        setIsAddModalOpen(true); // when u click on the add event button it will open the add modal, or even when u click on the white space
     };
 
     const handleCloseAddModal = () => {

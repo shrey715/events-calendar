@@ -21,7 +21,7 @@ const Home = () => {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
           >
-            <CalendarDays className="w-24 h-24 md:w-32 md:h-32 text-pink-600" />
+            <CalendarDays className="w-24 h-24 md:w-32 md:h-32 text-emerald-500" />
           </motion.div>
           Welcome to Calendrify!
         </motion.h1>
@@ -41,7 +41,7 @@ const Home = () => {
         >
           <Link 
             to="/calendar" 
-            className="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-8 rounded-lg transition-transform hover:-translate-y-2 duration-500"
+            className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg transition-transform hover:-translate-y-2 duration-500"
           >
             Go to Calendar
           </Link>

@@ -121,10 +121,10 @@ const MonthView = ({ selectedDate, onDayClick, setSelectedDate }: { selectedDate
 
                 {/* Days in the month */}
                 {daysInMonth.map((date, index) => (
-                    <div key={index} className={cn("relative border border-gray-200 rounded-lg p-2 cursor-pointer text-zinc-700 hover:bg-green-500", {
-                        "bg-red-100 hover:bg-red-400": date.getDay() === 0 || date.getDay() === 6, // Sunday or Saturday
-                        "bg-pink-400 text-white hover:bg-pink-500": date.toDateString() === today.toDateString(), // Current day
-                        "bg-green-400 text-white": date.toDateString() === selectedDate.toDateString() && date.toDateString() !== today.toDateString(), // Selected day
+                    <div key={index} className={cn("relative border border-gray-200 rounded-lg p-2 cursor-pointer text-zinc-700 hover:bg-sky-500", {
+                        "bg-green-100 hover:bg-green-300": date.getDay() === 0 || date.getDay() === 6, // Sunday or Saturday
+                        "bg-emerald-400 text-white hover:bg-emerald-500": date.toDateString() === today.toDateString(), // Current day
+                        "bg-sky-400 text-white hover:bg-sky-500": date.toDateString() === selectedDate.toDateString() && date.toDateString() !== today.toDateString(), // Selected day
                     })} onClick={() => onDayClick(date)}>
                         <div className="text-sm font-semibold">
                             {date.getDate()}

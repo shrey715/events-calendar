@@ -46,9 +46,9 @@ const YearView = ({ onMonthClick, selectedDate, setSelectedDate }: { onMonthClic
                     <div
                         key={index}
                         className={cn("relative border border-gray-200 rounded-lg p-4 cursor-pointer", {
-                            "bg-pink-400 text-white": date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth(), 
-                            "hover:bg-pink-500": date.getFullYear() === today.getFullYear() && date.getMonth() !== today.getMonth(), 
-                            "hover:bg-green-500": date.getFullYear() !== today.getFullYear() || date.getMonth() !== today.getMonth(), 
+                            "bg-emerald-600 text-white": date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth(), 
+                            "hover:bg-emerald-700 hover:text-white": date.getFullYear() === today.getFullYear() && date.getMonth() !== today.getMonth(), 
+                            "hover:bg-sky-600": date.getFullYear() !== today.getFullYear() || date.getMonth() !== today.getMonth(), 
                         })}
                         onClick={() => handleMonthClick(date)}
                     >

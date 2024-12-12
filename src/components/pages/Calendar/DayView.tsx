@@ -78,7 +78,7 @@ const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSel
                     <Button variant="ghost" onClick={handlePrevDay} className="rounded-full p-2 hover:bg-gray-100">
                         <ChevronLeft size={20} />
                     </Button>
-                    <h2 className="text-lg font-semibold text-gray-800">
+                    <h2 className="text-lg font-semibold text-gray-200">
                         {selectedDate.toLocaleDateString('en-US', {
                             weekday: 'long',
                             month: 'long',

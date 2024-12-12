@@ -7,7 +7,7 @@ import Loading from '@/components/pages/Handling/Loading';
 import NotFound from '@/components/pages/Handling/NotFound';
 import { CalendarProvider } from './components/contexts/CalendarContext';
 
-export default function EventCalendar() {
+export default function App() {
   return (
     <Router>
       <Suspense fallback={<Loading />}>

@@ -41,7 +41,7 @@ const Header = () => {
             transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
             className='flex flex-row justify-between items-center bg-transparent p-2 w-full h-fit'
         >
-            <div className='flex flex-row justify-center items-center text-pink-500'>
+            <div className='flex flex-row justify-center items-center text-gray-200'>
                 <Link to='/' className='flex flex-row justify-around items-center'>
                     <CalendarDaysIcon className='mr-2' />
                     <h1 className='text-2xl font-bold'>Calendrify</h1>

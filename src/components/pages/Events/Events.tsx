@@ -90,7 +90,7 @@ const SearchEvents = () => {
             transition={{ duration: 0.5 }}
         >
             <div className='flex flex-row justify-between items-center'>
-                <h1 className="text-3xl font-bold mb-6 text-center text-pink-600">Search Events</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center text-gray-200">Search Events</h1>
                 <div className='flex items-center gap-4'>
                     <Button variant="default" className="mb-6 flex items-center justify-center">
                         <Link to="/calendar" className="flex items-center">
@@ -151,8 +151,8 @@ const SearchEvents = () => {
                         {filteredEvents.map(event => (
                             <motion.li 
                                 key={event.id} 
-                                className={cn("border p-4 rounded mb-4 shadow-lg bg-gray-200", colorMap[event.color])}
-                                whileHover={{ scale: 1.05 }}
+                                className={cn("border p-4 rounded mb-4 shadow-lg bg-gray-200 cursor-pointer glass", colorMap[event.color])}
+                                whileHover={{ y: 10 }}
                             >
                                 <div className="flex justify-between items-center">
                                     <div>
@@ -162,8 +162,8 @@ const SearchEvents = () => {
                                         <p className='mb-2'>Date: {new Date(event.date).toLocaleDateString()}</p>
                                         <p>Time: {event.startTime} - {event.endTime}</p>
                                     </div>
-                                    <Button variant="ghost" onClick={() => handleEditEvent(event)} className="text-zinc-500 hover:bg-gray-100">
-                                        <Edit size={20} />
+                                    <Button variant="ghost" onClick={() => handleEditEvent(event)} className="text-zinc-100 hover:bg-gray-100">
+                                        <Edit size={35} />
                                     </Button>
                                 </div>
                             </motion.li>

@@ -1,17 +1,6 @@
 // Header.tsx
 import { motion } from 'motion/react';
-import { SquarePlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogFooter,
-    DialogTrigger,
-    DialogTitle, 
-    DialogClose
-} from '@/components/ui/dialog';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -21,10 +10,28 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useCalendarContext } from '../../contexts/CalendarContext';
-import AddForm from '@/components/ui/addEvent';
+import { CalendarDaysIcon } from 'lucide-react';
+import { DownloadIcon } from 'lucide-react';
+import {
+    getAllEvents,
+    sortEvents
+} from '@/api/event';
 
 const Header = () => {
     const { currentView, setCurrentView } = useCalendarContext();
+
+    const onDownloadClick = () => {
+        const events = getAllEvents();
+        if (events.length === 0) return alert('No events to download');
+        const sortedEvents = sortEvents(events);
+        const blob = new Blob([JSON.stringify(sortedEvents)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'calendrify-events.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
 
     return(
         <motion.header
@@ -33,29 +40,11 @@ const Header = () => {
             transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
             className='flex flex-row justify-between items-center bg-transparent p-2 w-full h-fit'
         >
-            <Dialog>
-                <DialogTrigger>
-                    <Button>
-                        <SquarePlus size={24} className='mr-2' />
-                        Add Event
-                    </Button>
-                </DialogTrigger>
-                <DialogContent className='text-zinc-800'>
-                    <DialogHeader>
-                        <DialogTitle>Add Event</DialogTitle>
-                        <DialogDescription>
-                            Add a new event to your calendar.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <AddForm />
-                    <DialogFooter>
-                        <DialogClose>
-                            <Button variant='ghost'>Cancel</Button>
-                        </DialogClose>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-            <div className='flex flex-row justify-center items-center'>
+            <div className='flex flex-row justify-center items-center text-pink-500'>
+                <CalendarDaysIcon className='mr-2' />
+                <h1 className='text-2xl font-bold'>Calendrify</h1>
+            </div>
+            <div className='flex flex-row justify-center items-center gap-5'>
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Button>
@@ -72,6 +61,13 @@ const Header = () => {
                         <DropdownMenuItem onClick={() => setCurrentView('day')}>Day</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
+                <Button
+                    variant='default'
+                    onClick={onDownloadClick}
+                >
+                    <DownloadIcon />
+                    <span className='ml-2'>Download Events</span>
+                </Button>
             </div>
         </motion.header>
     );

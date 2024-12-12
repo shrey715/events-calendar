@@ -16,13 +16,15 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 import {
-  addNewEvent,
+  deleteEvent,
+  updateEvent,
   EventType,
   EventColor,
   type Event,
 } from '@/api/event';
 
-const addFormSchema = z.object({
+const updateFormSchema = z.object({
+  id: z.number(),
   name: z.string().min(1, 'Event name is required'),
   date: z.string().refine((date) => {
     const eventDate = new Date(date);
@@ -46,37 +48,42 @@ const addFormSchema = z.object({
   path: ['endTime'],
 });
 
-type AddFormValues = z.infer<typeof addFormSchema>;
+type UpdateFormValues = z.infer<typeof updateFormSchema>;
 
-const AddForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const form = useForm<AddFormValues>({
-    resolver: zodResolver(addFormSchema),
+const UpdateForm: React.FC<{ event: Event, onClose: () => void }> = ({ event, onClose }) => {
+  const form = useForm<UpdateFormValues>({
+    resolver: zodResolver(updateFormSchema),
     defaultValues: {
-      name: '',
-      date: '',
-      description: '',
-      startTime: '',
-      endTime: '',
-      type: EventType.personal,
+      id: event.id,
+      name: event.name,
+      date: event.date,
+      description: event.description,
+      startTime: event.startTime,
+      endTime: event.endTime,
+      type: event.type,
     },
   });
 
-  const onSubmit = (values: AddFormValues) => {
-    const newEvent: Event = {
-      id: Date.now(), // Use current timestamp as ID
-      color: EventColor[values.type],
+  const onSubmit = (values: UpdateFormValues) => {
+    const updatedEvent: Event = {
       ...values,
+      color: EventColor[values.type],
       date: new Date(values.date).toISOString().split('T')[0],
       description: values.description || '',
     };
     try {
-      addNewEvent(newEvent);
+      updateEvent(event.id, updatedEvent);
       form.reset();
       onClose();
     } catch {
       alert('Event conflicts with an existing event.');
     }
   };
+
+  const onDelete = () => {
+    deleteEvent(event.id);
+    onClose();
+  }
 
   return (
     <Form {...form}>
@@ -185,13 +192,13 @@ const AddForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           )}
         />
 
-        <div className="flex justify-end">
-          <Button onClick={onClose} type="button" className="mr-2">Cancel</Button>
-          <Button type="submit">Add Event</Button>
+        <div className="flex justify-end gap-3">
+          <Button type="submit">Update Event</Button>
+          <Button type="button" variant="destructive" onClick={onDelete}>Delete Event</Button>
         </div>
       </form>
     </Form>
   );
 };
 
-export default AddForm;
+export default UpdateForm;

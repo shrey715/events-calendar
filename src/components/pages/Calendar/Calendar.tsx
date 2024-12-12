@@ -1,13 +1,25 @@
 import { motion } from 'framer-motion';
 import { useCalendarContext } from '../../contexts/CalendarContext';
 import Header from './Header';
-import WeekView from './WeekView';
 import DayView from './DayView';
+import WeekView from './WeekView';
 import MonthView from './MonthView';
 import YearView from './YearView';
+import { useState } from 'react';
 
 const Calendar = () => {
-    const { currentView } = useCalendarContext();
+    const { currentView, setCurrentView } = useCalendarContext();
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const handleDayClick = (date: Date) => {
+        setSelectedDate(date);
+        setCurrentView('day');
+    };
+
+    const handleMonthClick = (date: Date) => {
+        setSelectedDate(date);
+        setCurrentView('month');
+    };
 
     return (
         <motion.div
@@ -18,10 +30,10 @@ const Calendar = () => {
             className="bg-transparent p-5"
         >
             <Header />
-            {currentView === 'year' && <YearView />}
-            {currentView === 'month' && <MonthView />}
-            {currentView === 'week' && <WeekView />}
-            {currentView === 'day' && <DayView />}            
+            {currentView === 'year' && <YearView onMonthClick={handleMonthClick} />}
+            {currentView === 'month' && <MonthView selectedDate={selectedDate} onDayClick={handleDayClick} setSelectedDate={setSelectedDate} />}
+            {currentView === 'week' && <WeekView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+            {currentView === 'day' && <DayView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}            
         </motion.div>
     );
 };

@@ -19,8 +19,7 @@ const colorMap = {
     purple: 'bg-purple-500',
 };
 
-const DayView = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const DayView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSelectedDate: (date: Date) => void }) => {
     const [eventsForDay, setEventsForDay] = useState<Event[]>([]);
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);

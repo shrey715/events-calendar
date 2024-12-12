@@ -15,12 +15,15 @@ const colorMap = {
     purple: 'bg-purple-500',
 };
 
-const MonthView = ({ onDayClick }: { onDayClick: (date: Date) => void }) => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const MonthView = ({ selectedDate, onDayClick, setSelectedDate }: { selectedDate: Date, onDayClick: (date: Date) => void, setSelectedDate: (date: Date) => void }) => {
     const [eventsForMonth, setEventsForMonth] = useState<{ [key: string]: Event[] }>({});
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [refetch, setRefetch] = useState(false);
+
+    useEffect(() => {
+        setSelectedDate(selectedDate);
+    }, [selectedDate]);
 
     useEffect(() => {
         try {

@@ -15,8 +15,7 @@ const colorMap = {
     purple: 'bg-purple-500',
 };
 
-const WeekView = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const WeekView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSelectedDate: (date: Date) => void }) => {
     const [eventsForWeek, setEventsForWeek] = useState<{ [key: string]: Event[] }>({});
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);

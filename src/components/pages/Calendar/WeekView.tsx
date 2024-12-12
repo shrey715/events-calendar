@@ -84,7 +84,7 @@ const WeekView = ({ selectedDate, setSelectedDate }: { selectedDate: Date, setSe
                 <Button variant="ghost" onClick={handlePrevWeek} className="rounded-full p-2 hover:bg-gray-100">
                     <ChevronLeft size={20} />
                 </Button>
-                <h2 className="text-lg font-semibold text-gray-800">
+                <h2 className="text-lg font-semibold text-gray-200">
                     {`${daysOfWeek[0].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - ${daysOfWeek[6].toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`} of {selectedDate.getFullYear()}
                 </h2>
                 <Button variant="ghost" onClick={handleNextWeek} className="rounded-full p-2 hover:bg-gray-100">
